@@ -18,11 +18,6 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="title">Добавить книгу</h1>
-      <input
-        type="file"
-        id="myFileInput"
-        onChange={handleChange}
-      ></input>
       <div className="add-book">
         <img src={Logo} alt="Logo" className="logo"></img>
         <div>
