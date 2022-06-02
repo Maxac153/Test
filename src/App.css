@@ -1,0 +1,34 @@
+.App{
+    width: 800px;
+    margin: 0 auto;
+}
+
+.title{
+    text-align: center;
+}
+
+.add-book{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 100px;
+}
+
+
+.input{
+    font-size: 18px;
+    margin: 20px;
+}
+
+.btn{
+    font-size: 18px;
+}
+
+.item {
+    border: 1px #999 solid;
+    margin: 20px 0;
+    padding: 10px;
+}
