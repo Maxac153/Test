@@ -6,37 +6,41 @@ import Input from "./Components/UI/input/Input";
 import Header from "./Components/Header";
 
 const App = () => {
-  const [author, setAuthor] = useState("");
-  const [name, setName] = useState("");
-  const [img, setImg] = useState("");
+  const [book, setBook] = useState({ img: "", author: "", name: "" });
   const [books, setBooks] = useState([Object.values(localStorage)]);
 
   //Добавление книги
   const handle = (e) => {
+    e.preventDefault();
     let id = Date.now();
-    e.preventDefault()
     const reader = new FileReader();
-    reader.readAsDataURL(img);
+    reader.readAsDataURL(book.img);
     reader.addEventListener("load", () => {
-      localStorage.setItem(`${id}`, [id, reader.result, author, name]);
+      localStorage.setItem(`${id}`, [
+        id,
+        reader.result,
+        book.author,
+        book.name,
+      ]);
       setBooks([Object.values(localStorage)]);
     });
   };
 
   return (
     <div className="App">
-
-      <Header title={"Список книг"}/>
-
+      <Header title={"Список книг"} />
       <form className="add__book">
-        <Input type="file" onChange={(e) => setImg(e.target.files[0])}/>
         <Input
-          onChange={(e) => setAuthor(e.target.value)}
+          type="file"
+          onChange={(e) => setBook({ ...book, img: e.target.files[0] })}
+        />
+        <Input
+          onChange={(e) => setBook({ ...book, author: e.target.value })}
           className="input"
           placeholder="Автор книги"
         />
         <Input
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setBook({ ...book, name: e.target.value })}
           className="input"
           placeholder="Название книги"
         />
