@@ -1,29 +1,31 @@
-const BookItem = ({ img, setBooks, author, name }) => {
+import Button from "./UI/button/Button";
+
+const BookItem = ({ ...porps }) => {
   //Удаление книги
   const remove = (id) => {
     localStorage.removeItem(id);
-    setBooks([Object.values(localStorage)]);
+    porps.setBooks([Object.values(localStorage)]);
   };
 
   return (
     <div className="item">
-      <img className="img_book" src={img} alt="book" />
+      <img className="img_book" src={porps.img} alt="book" />
       <div>
         <p>
-          Автор книги: <b>{author}</b>
+          Автор книги: <b>{porps.author}</b>
         </p>
         <p>
           {" "}
-          Название книги: <b>{name}</b>
+          Название книги: <b>{porps.name}</b>
         </p>
       </div>
-      <button
-        id={author + name}
+      <Button
+        id={porps.id}
         className="btn"
         onClick={(e) => remove(e.target.id)}
       >
         Удалить книгу
-      </button>
+      </Button>
     </div>
   );
 };

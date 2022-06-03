@@ -1,55 +1,58 @@
-import React, { useState } from "react";
 import "./App.css";
-import Book from "./BookItem";
-import Logo from "./img/book.png";
+import React, { useRef, useState } from "react";
+import Book from "./Components/BookItem";
+import Button from "./Components/UI/button/Button";
+import Input from "./Components/UI/input/Input";
+import Header from "./Components/Header";
 
 const App = () => {
   const [author, setAuthor] = useState("");
   const [name, setName] = useState("");
   const [img, setImg] = useState("");
+  const [books, setBooks] = useState([Object.values(localStorage)]);
 
   //Добавление книги
-  const handle = () => {
+  const handle = (e) => {
+    let id = Date.now();
+    e.preventDefault()
     const reader = new FileReader();
     reader.readAsDataURL(img);
     reader.addEventListener("load", () => {
-      localStorage.setItem(`${author}${name}`, [reader.result, author, name]);
+      localStorage.setItem(`${id}`, [id, reader.result, author, name]);
       setBooks([Object.values(localStorage)]);
     });
   };
 
-  const [books, setBooks] = useState([Object.values(localStorage)]);
-
   return (
     <div className="App">
-      <h1 className="title">Добавить книгу</h1>
-      <input type="file" onChange={(e) => setImg(e.target.files[0])}></input>
-      <div className="add-book">
-        <img src={Logo} alt="Logo" className="logo"></img>
-        <div>
-          <input
-            className="input"
-            placeholder="Автор книги"
-            onChange={(e) => setAuthor(e.target.value)}
-          />
-          <input
-            className="input"
-            placeholder="Название книги"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <button className="btn" onClick={handle}>
-            Добавить книгу
-          </button>
-        </div>
-      </div>
+
+      <Header title={"Список книг"}/>
+
+      <form className="add__book">
+        <Input type="file" onChange={(e) => setImg(e.target.files[0])}/>
+        <Input
+          onChange={(e) => setAuthor(e.target.value)}
+          className="input"
+          placeholder="Автор книги"
+        />
+        <Input
+          onChange={(e) => setName(e.target.value)}
+          className="input"
+          placeholder="Название книги"
+        />
+        <Button className="btn" onClick={handle}>
+          Добавить книгу
+        </Button>
+      </form>
 
       {Object.values(localStorage).map((book, index) => (
         <Book
           key={index}
           setBooks={setBooks}
-          img={book.split(",")[0] + "," +book.split(",")[1]}
-          author={book.split(",")[2]}
-          name={book.split(",")[3]}
+          id={book.split(",")[0]}
+          img={book.split(",")[1] + "," + book.split(",")[2]}
+          author={book.split(",")[3]}
+          name={book.split(",")[4]}
         ></Book>
       ))}
     </div>
