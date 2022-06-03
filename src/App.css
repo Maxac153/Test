@@ -34,6 +34,9 @@
 
 .item {
     border: 1px #999 solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 20px 0;
     padding: 10px;
 }
