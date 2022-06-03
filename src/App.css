@@ -27,6 +27,11 @@
     font-size: 18px;
 }
 
+.img_book{
+    width: 145px;
+    height: 205px;
+}
+
 .item {
     border: 1px #999 solid;
     margin: 20px 0;
