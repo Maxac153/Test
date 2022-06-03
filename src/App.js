@@ -6,11 +6,16 @@ import Logo from "./img/book.png";
 const App = () => {
   const [author, setAuthor] = useState("");
   const [name, setName] = useState("");
+  const [img, setImg] = useState("");
 
   //Добавление книги
   const handle = () => {
-    localStorage.setItem(`${author}${name}`, [author, name]);
-    setBooks([Object.values(localStorage)]);
+    const reader = new FileReader();
+    reader.readAsDataURL(img);
+    reader.addEventListener("load", () => {
+      localStorage.setItem(`${author}${name}`, [reader.result, author, name]);
+      setBooks([Object.values(localStorage)]);
+    });
   };
 
   const [books, setBooks] = useState([Object.values(localStorage)]);
@@ -18,6 +23,7 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="title">Добавить книгу</h1>
+      <input type="file" onChange={(e) => setImg(e.target.files[0])}></input>
       <div className="add-book">
         <img src={Logo} alt="Logo" className="logo"></img>
         <div>
@@ -41,8 +47,9 @@ const App = () => {
         <Book
           key={index}
           setBooks={setBooks}
-          author={book.split(",")[0]}
-          name={book.split(",")[1]}
+          img={book.split(",")[0] + "," +book.split(",")[1]}
+          author={book.split(",")[2]}
+          name={book.split(",")[3]}
         ></Book>
       ))}
     </div>
