@@ -5,7 +5,6 @@ import Input from "../Components/UI/input/Input";
 const Form = ({ create }) => {
   const [book, setBook] = useState({ img: "", author: "", name: "" });
 
-  //Добавление книги
   const handle = (e) => {
     e.preventDefault();
     let id = Date.now();
@@ -18,7 +17,12 @@ const Form = ({ create }) => {
         book.author,
         book.name,
       ]);
-      create([Object.values(localStorage)]);
+      create({
+        id: id,
+        img: reader.result,
+        author: book.author,
+        name: book.name,
+      });
     });
   };
 

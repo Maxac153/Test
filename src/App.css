@@ -1,22 +1,32 @@
+/* App */
+
 .App{
     width: 800px;
     margin: 0 auto;
 }
 
-.title{
+/* Header */
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__title{
     text-align: center;
 }
+
+.header__logo{
+    width: 100px;
+}
+
+/* Form */
 
 .add__book{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
-.logo{
-    width: 100px;
-}
-
 
 .input{
     font-size: 14px;
@@ -25,6 +35,9 @@
 .btn{
     font-size: 14px;
 }
+
+
+/* Books list */
 
 .img_book{
     width: 145px;
@@ -40,7 +53,6 @@
     padding: 10px;
 }
 
-.header{
-    display: flex;
-    justify-content: space-between;
+.no_books{
+    text-align: center;
 }
