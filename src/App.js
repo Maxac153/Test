@@ -8,15 +8,7 @@ import Filter from "./Components/UI/filter/Filter";
 const App = () => {
   //Преобразуем массив в объект
   let list = Object.values(localStorage).reduce((books, book) => {
-    books = [
-      ...books,
-      {
-        id: book.split(",")[0],
-        img: book.split(",")[1] + "," + book.split(",")[2],
-        author: book.split(",")[3],
-        name: book.split(",")[4],
-      },
-    ];
+    books = [...books, JSON.parse(book)];
     return books;
   }, []);
 

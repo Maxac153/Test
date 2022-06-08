@@ -8,18 +8,19 @@ const Form = ({ create }) => {
 
   const handle = (e) => {
     e.preventDefault();
+
     let id = Date.now();
     if (book.author !== "" || book.author !== "")
       try {
         const reader = new FileReader();
         reader.readAsDataURL(book.img);
         reader.addEventListener("load", () => {
-          localStorage.setItem(`${id}`, [
-            id,
-            reader.result,
-            book.author,
-            book.name,
-          ]);
+          localStorage.setItem(`${id}`, JSON.stringify({
+            id:id,
+            img:reader.result,
+            author:book.author,
+            name:book.name,
+          }));
           create({
             id: id,
             img: reader.result,
@@ -27,8 +28,7 @@ const Form = ({ create }) => {
             name: book.name,
           });
         });
-      } catch (err) {
-      }
+      } catch (err) {}
 
     setBook({ img: book.img, author: "", name: "" });
   };
