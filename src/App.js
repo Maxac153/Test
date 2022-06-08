@@ -46,7 +46,7 @@ const App = () => {
       <Form create={createBook} />
       <Filter
         value={filterSort}
-        onChange={sortBooks}
+        sort={sortBooks}
         defaultValue={"Сортировка по"}
         options={[
           {

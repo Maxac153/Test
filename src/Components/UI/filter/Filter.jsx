@@ -1,9 +1,9 @@
-import "../filter/filter.css"
+import "../filter/filter.css";
 
-const Filter = ({ defaultValue, options, value, onChange }) => {
+const Filter = ({ defaultValue, options, value, sort }) => {
   return (
     <div className="filter">
-      <select value={value} onChange={(event) => onChange(event.target.value)}>
+      <select value={value} onChange={(e) => sort(e.target.value)}>
         <option disabled value="value">
           {defaultValue}
         </option>

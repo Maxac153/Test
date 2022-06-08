@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Components/UI/button/Button";
 import Input from "../Components/UI/input/Input";
+import Modal from "../Components/Modal";
 
 const Form = ({ create }) => {
   const [book, setBook] = useState({ img: "", author: "", name: "" });
@@ -8,22 +9,28 @@ const Form = ({ create }) => {
   const handle = (e) => {
     e.preventDefault();
     let id = Date.now();
-    const reader = new FileReader();
-    reader.readAsDataURL(book.img);
-    reader.addEventListener("load", () => {
-      localStorage.setItem(`${id}`, [
-        id,
-        reader.result,
-        book.author,
-        book.name,
-      ]);
-      create({
-        id: id,
-        img: reader.result,
-        author: book.author,
-        name: book.name,
-      });
-    });
+    if (book.author !== "" || book.author !== "")
+      try {
+        const reader = new FileReader();
+        reader.readAsDataURL(book.img);
+        reader.addEventListener("load", () => {
+          localStorage.setItem(`${id}`, [
+            id,
+            reader.result,
+            book.author,
+            book.name,
+          ]);
+          create({
+            id: id,
+            img: reader.result,
+            author: book.author,
+            name: book.name,
+          });
+        });
+      } catch (err) {
+      }
+
+    setBook({ img: book.img, author: "", name: "" });
   };
 
   return (
@@ -33,11 +40,13 @@ const Form = ({ create }) => {
         onChange={(e) => setBook({ ...book, img: e.target.files[0] })}
       />
       <Input
+        value={book.author}
         onChange={(e) => setBook({ ...book, author: e.target.value })}
         className="input"
         placeholder="Автор книги"
       />
       <Input
+        value={book.name}
         onChange={(e) => setBook({ ...book, name: e.target.value })}
         className="input"
         placeholder="Название книги"
