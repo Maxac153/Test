@@ -1,67 +1,57 @@
-/* App */
+/* Wrapper */
 
-.App{
-    width: 800px;
-    margin: 0 auto;
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
 }
 
 /* Header */
 
-.header{
-    display: flex;
-    justify-content: space-between;
+.header {
+  display: flex;
+  justify-content: space-between;
 }
 
-.header__title{
-    text-align: center;
+.header__title {
+  text-align: center;
 }
 
-.header__logo{
-    width: 100px;
+.header__logo {
+  width: 100px;
 }
 
 /* Form */
 
-.add__book{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.add__book {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.input{
-    font-size: 14px;
+.input {
+  font-size: 14px;
 }
 
-.btn{
-    font-size: 14px;
+.btn {
+  font-size: 14px;
 }
-
 
 /* Books list */
 
-.img_book{
-    width: 145px;
-    height: 205px;
+.img_book {
+  width: 145px;
+  height: 205px;
 }
 
 .item {
-    border: 1px #999 solid;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
-    padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px #999 solid;
 }
 
-.no_books{
-    text-align: center;
-}
-
-/* Modal */
-
-.modal{
-    width: 300px;
-    height: 200px;
-    border: 1px #999 solid;
-    border-radius: 5px;
+.no_books {
+  text-align: center;
 }
